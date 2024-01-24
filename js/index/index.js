@@ -597,183 +597,70 @@ Highcharts.chart('fixed_assets_chart', {
 });
 
 
-// ============================ screener line chart ============================
 
-const colors = Highcharts.getOptions().colors;
-
-Highcharts.chart('screener_line_chart', {
-    chart: {
-        type: 'spline'
-    },
-
-    legend: {
-        symbolWidth: 40
-    },
-
-    title: {
-        text: 'Most common desktop screen readers',
-        align: 'left'
-    },
-
-    subtitle: {
-        text: 'Source: WebAIM. Click on points to visit official screen reader website',
-        align: 'left'
-    },
-
-    yAxis: {
-        title: {
-            text: 'Percentage usage'
-        },
-        accessibility: {
-            description: 'Percentage usage'
-        }
-    },
-
-    xAxis: {
-        title: {
-            text: 'Time'
-        },
-        accessibility: {
-            description: 'Time from December 2010 to September 2019'
-        },
-        categories: ['December 2010', 'May 2012', 'January 2014', 'July 2015', 'October 2017', 'September 2019']
-    },
-
-    tooltip: {
-        valueSuffix: '%',
-        stickOnContact: true
-    },
-
-    plotOptions: {
-        series: {
-            point: {
-                events: {
-                    click: function () {
-                        window.location.href = this.series.options.website;
-                    }
-                }
-            },
-            cursor: 'pointer',
-            lineWidth: 2
-        }
-    },
-
-    series: [
-        {
-            name: 'NVDA',
-            data: [34.8, 43.0, 51.2, 41.4, 64.9, 72.4],
-            website: 'https://www.nvaccess.org',
-            color: colors[2],
-            accessibility: {
-                description: 'This is the most used screen reader in 2019.'
-            }
-        }, {
-            name: 'JAWS',
-            data: [69.6, 63.7, 63.9, 43.7, 66.0, 61.7],
-            website: 'https://www.freedomscientific.com/Products/Blindness/JAWS',
-            dashStyle: 'ShortDashDot',
-            color: colors[0]
-        }, {
-            name: 'VoiceOver',
-            data: [20.2, 30.7, 36.8, 30.9, 39.6, 47.1],
-            website: 'http://www.apple.com/accessibility/osx/voiceover',
-            dashStyle: 'ShortDot',
-            color: colors[1]
-        }, {
-            name: 'Narrator',
-            data: [null, null, null, null, 21.4, 30.3],
-            website: 'https://support.microsoft.com/en-us/help/22798/windows-10-complete-guide-to-narrator',
-            dashStyle: 'Dash',
-            color: colors[9]
-        }, {
-            name: 'ZoomText/Fusion',
-            data: [6.1, 6.8, 5.3, 27.5, 6.0, 5.5],
-            website: 'http://www.zoomtext.com/products/zoomtext-magnifierreader',
-            dashStyle: 'ShortDot',
-            color: colors[5]
-        }, {
-            name: 'Other',
-            data: [42.6, 51.5, 54.2, 45.8, 20.2, 15.4],
-            website: 'http://www.disabled-world.com/assistivedevices/computer/screen-readers.php',
-            dashStyle: 'ShortDash',
-            color: colors[3]
-        }
-    ],
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 550
-            },
-            chartOptions: {
-                chart: {
-                    spacingLeft: 3,
-                    spacingRight: 3
-                },
-                legend: {
-                    itemWidth: 150
-                },
-                xAxis: {
-                    categories: ['Dec. 2010', 'May 2012', 'Jan. 2014', 'July 2015', 'Oct. 2017', 'Sep. 2019'],
-                    title: ''
-                },
-                yAxis: {
-                    visible: false
-                }
-            }
-        }]
-    }
-});
-
-
-
-// ========================== segments bar chart ============================
-
-Highcharts.chart('segments_bar_chart', {
+// ========================== sector_contribue_chart ============================
+Highcharts.chart('sector_contribe_chart', {
     chart: {
         type: 'column'
     },
     title: {
-        text: 'Corn vs wheat estimated production for 2020',
-        align: 'left'
-    },
-    subtitle: {
-        text:
-            'Source: <a target="_blank" ' +
-            'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>',
+        text: 'Sector contribution to GDP, 2018-2022',
         align: 'left'
     },
     xAxis: {
-        categories: ['USA', 'China', 'Brazil', 'EU', 'India', 'Russia'],
-        crosshair: true,
-        accessibility: {
-            description: 'Countries'
-        }
+        categories: ['2018', '2019', '2020', '2021', '2022']
     },
     yAxis: {
         min: 0,
+        max: 100,
         title: {
-            text: '1000 metric tons (MT)'
-        }
+            text: ''
+        },
+        stackLabels: {
+            enabled: true
+        },
+    },
+    legend: {
+        align: 'left',
+        x: 70,
+        verticalAlign: 'top',
+        y: 70,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
     },
     tooltip: {
-        valueSuffix: ' (1000 MT)'
+        headerFormat: '<b>{point.x}</b><br/>',
+        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
     },
     plotOptions: {
         column: {
-            pointPadding: 0.2,
-            borderWidth: 0
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
         }
     },
     series: [
         {
-            name: 'Corn',
-            data: [406292, 260000, 107000, 68300, 27500, 14500]
+            name: 'Services',
+            data: [54, 54, 54, 54, 54],
+            color: '#0028A0'
         },
         {
-            name: 'Wheat',
-            data: [51086, 136000, 5500, 141000, 107180, 77000]
+            name: 'Industry',
+            data: [40, 40, 40, 40, 40],
+            color: '#41B6E6'
+        },
+        {
+            name: 'Agriculture',
+            data: [6, 6, 6, 6, 6],
+            color: '#009775'
         }
+
     ]
 });
 
