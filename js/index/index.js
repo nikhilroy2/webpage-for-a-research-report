@@ -502,3 +502,22 @@ Highcharts.chart('debt_summary_bar_chart', {
         }
     ]
 });
+
+
+
+
+
+
+
+// ==============================mdb tab code ========================
+let ragional_tab_wrapper = document.querySelector('#ragional_tab_wrapper');
+ragional_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(value=> {
+    value.onclick = function(){
+        ragional_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(all=> {
+            all.classList.remove('btn-primary');
+            all.classList.add('btn-outline-primary');
+        })
+        this.classList.add('btn-primary');
+        this.classList.remove('btn-outline-primary');
+    }
+})

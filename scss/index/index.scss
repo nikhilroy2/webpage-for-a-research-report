@@ -3,7 +3,9 @@
 }
 
 :root {
-    --mdb-primary-rgb: 0, 20, 80
+    --mdb-primary-rgb: 0, 20, 80;
+    --mdb-body-color: rgba(0, 0, 0, 0.9);
+    --mdb-body-line-height: 1.5;
 }
 
 body {
