@@ -94,125 +94,507 @@
     });
 }(Highcharts));
 
-Highcharts.chart('overflow_tab_line_chart', {
+
+
+
+// ======================================== real_gdp_growth_chart =================
+Highcharts.chart('real_gdp_growth_chart', {
     chart: {
-        type: 'spline'
+        zoomType: 'xy'
     },
-
     title: {
-        text: 'United States of America\'s Inflation-related statistics',
+        text: '',
         align: 'left'
     },
-
     subtitle: {
-        text: 'Source: <a href="https://www.worldbank.org/en/home">The World Bank</a>',
+        text: 'Source: ' +
+            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
+            'target="_blank">YR</a>',
         align: 'left'
     },
-
-    data: {
-        csv: document.getElementById('csv').innerHTML
-    },
-
-    yAxis: [{
-        title: {
-            text: 'Inflation'
+    xAxis: [{
+        categories: ['Jilin', 'Shanghai', 'Hainan', 'Beijing', 'Tianjin', 'Tibet',
+            'Guizhou', 'Guangdong', 'Liaoning', 'Qinghai', 'Chongqing', 'Heilongjiang',
+            'Jiangsu', 'Guangxi', 'Sichuan', 'Henan', 'Zhejiang', 'Xinjiang', 'Anhui', 'Hebei',
+            'Shandong', 'Ningxia', 'Inner Mongolia', 'Shaanxi', 'Yunman', 'Hubei', 'Shanxi', 'Gansu',
+            'Hunana', 'Fujian', 'Jiangxi'],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value}%',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
         },
-        plotLines: [{
-            color: 'black',
-            width: 2,
-            value: 13.5492019749684,
-            animation: {
-                duration: 1000,
-                defer: 4000
-            },
-            label: {
-                text: 'Max Inflation',
-                align: 'right',
-                x: -20
+        title: {
+            text: '',
+            style: {
+                color: Highcharts.getOptions().colors[1]
             }
-        }]
-    }, {
+        },
+        opposite: true
+    }, { // Secondary yAxis
         title: {
-            text: 'Claims on central government, etc.'
-        }
-    }, {
-        opposite: true,
+            text: 'RMB trillion',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: false
+    },
+    { // Secondary yAxis 2
         title: {
-            text: 'Net foreign assets'
-        }
-    }, {
-        opposite: true,
+            text: '',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: false
+    },
+    { // Secondary yAxis 3
         title: {
-            text: 'Net domestic credit'
-        }
-    }],
+            text: '',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: false
+    }
 
-    plotOptions: {
-        series: {
-            animation: {
-                duration: 1000
-            },
-            marker: {
-                enabled: false
-            },
-            lineWidth: 2
+    ],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 60,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || // theme
+            'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: '2022 GDP -left axis',
+        type: 'column',
+        color: '#009775',
+        yAxis: 1,
+        data: [1.5, 4, 1, 3.8, 2, .5, 2.2, 12, 3, 1, 4, 3, 11, 4, 5, 6, 7, 3, 4, 3.5, 7, 1.1, 3, 4, 3.3, 5, 3, 2, 4, 5, 4.4],
+        tooltip: {
+            valueSuffix: ''
+        }
+
+    }, {
+        name: 'Year on Year Growth (2022) -right axis',
+        type: 'spline',
+        color: '#001450',
+        data: [1.9, 2.5, 2.5, 2.5, 2.5, 2.5, 3, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 4, 4, 4, 4, 4, 4, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 2, 2],
+        tooltip: {
+            valueSuffix: ''
         }
     },
-
-    series: [{
-        yAxis: 0
-    }, {
-        yAxis: 1,
-        animation: {
-            defer: 1000
+    {
+        name: 'Year-on- Year Growth 2021 -right axis',
+        type: 'spline',
+        color: '#001400',
+        dashStyle: 'ShortDash', // or 'Dash' for a dashed line
+        data: [3, 4, 4, 4, 4, 4, 3, 5, 5, 5, 5, 5, 5, 5, 3.3, 3.3, 3.3, 3.3, 3.3, 3.3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2],
+        tooltip: {
+            valueSuffix: ''
         }
-    }, {
-        yAxis: 2,
-        animation: {
-            defer: 2000
+    },
+    {
+        name: 'National GDP Growth (2022) - right axis',
+        type: 'spline',
+        color: '#BA0C2F',
+        dashStyle: 'ShortDash', // or 'Dash' for a dashed line
+        data: [3, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2],
+        tooltip: {
+            valueSuffix: ''
         }
-    }, {
-        yAxis: 3,
-        animation: {
-            defer: 3000
-        }
-    }],
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                yAxis: [{
-                    tickAmount: 2,
-                    title: {
-                        x: 15,
-                        reserveSpace: false
-                    }
-                }, {
-                    tickAmount: 2,
-                    title: {
-                        x: 20,
-                        reserveSpace: false
-                    }
-                }, {
-                    tickAmount: 2,
-                    title: {
-                        x: -20,
-                        reserveSpace: false
-                    }
-                }, {
-                    tickAmount: 2,
-                    title: {
-                        x: -20,
-                        reserveSpace: false
-                    }
-                }]
-            }
-        }]
-    }
+    },
+    ]
 });
 
+
+// ======================================== debt_to_gdp_chart =================
+Highcharts.chart('debt_to_gdp_chart', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: '',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Source: ' +
+            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
+            'target="_blank">YR</a>',
+        align: 'left'
+    },
+    xAxis: [{
+        categories: ['Jilin', 'Shanghai', 'Hainan', 'Beijing', 'Tianjin', 'Tibet',
+            'Guizhou', 'Guangdong', 'Liaoning', 'Qinghai', 'Chongqing', 'Heilongjiang',
+            'Jiangsu', 'Guangxi', 'Sichuan', 'Henan', 'Zhejiang', 'Xinjiang', 'Anhui', 'Hebei',
+            'Shandong', 'Ningxia', 'Inner Mongolia', 'Shaanxi', 'Yunman', 'Hubei', 'Shanxi', 'Gansu',
+            'Hunana', 'Fujian', 'Jiangxi'],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value}%',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: '',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        opposite: true
+    }, { // Secondary yAxis
+        title: {
+            text: 'RMB trillion',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: false
+    },
+    ],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 60,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || // theme
+            'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: '2022 GDP -left axis',
+        type: 'column',
+        color: '#009775',
+        yAxis: 1,
+        data: [1.5, 4, 1, 3.8, 2, .5, 2.2, 12, 3, 1, 4, 3, 11, 4, 5, 6, 7, 3, 4, 3.5, 7, 1.1, 3, 4, 3.3, 5, 3, 2, 4, 5, 4.4],
+        tooltip: {
+            valueSuffix: ''
+        }
+
+    }, {
+        name: 'Year on Year Growth (2022) -right axis',
+        type: 'spline',
+        color: '#001450',
+        data: [1.9, 2.5, 2.5, 2.5, 2.5, 2.5, 3, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 4, 4, 4, 4, 4, 4, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 2, 2],
+        tooltip: {
+            valueSuffix: ''
+        }
+    },
+    ]
+});
+
+
+
+// ======================================== fixed_assets_chart =================
+Highcharts.chart('fixed_assets_chart', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: '',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Source: ' +
+            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
+            'target="_blank">YR</a>',
+        align: 'left'
+    },
+    xAxis: [{
+        categories: ['Jilin', 'Shanghai', 'Hainan', 'Beijing', 'Tianjin', 'Tibet',
+            'Guizhou', 'Guangdong', 'Liaoning', 'Qinghai', 'Chongqing', 'Heilongjiang',
+            'Jiangsu', 'Guangxi', 'Sichuan', 'Henan', 'Zhejiang', 'Xinjiang', 'Anhui', 'Hebei',
+            'Shandong', 'Ningxia', 'Inner Mongolia', 'Shaanxi', 'Yunman', 'Hubei', 'Shanxi', 'Gansu',
+            'Hunana', 'Fujian', 'Jiangxi'],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value}%',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: '',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        opposite: true
+    }, { // Secondary yAxis
+        title: {
+            text: 'RMB trillion',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: false
+    },
+    ],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 60,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || // theme
+            'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: '2022 GDP -left axis',
+        type: 'column',
+        color: '#009775',
+        yAxis: 1,
+        data: [1.5, 4, 1, 3.8, 2, .5, 2.2, 12, 3, 1, 4, 3, 11, 4, 5, 6, 7, 3, 4, 3.5, 7, 1.1, 3, 4, 3.3, 5, 3, 2, 4, 5, 4.4],
+        tooltip: {
+            valueSuffix: ''
+        }
+
+    }, {
+        name: 'Year on Year Growth (2022) -right axis',
+        type: 'spline',
+        color: '#001450',
+        data: [1.9, 2.5, 2.5, 2.5, 2.5, 2.5, 3, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 4, 4, 4, 4, 4, 4, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 2, 2],
+        tooltip: {
+            valueSuffix: ''
+        }
+    },
+    ]
+});
+
+
+
+
+// ======================================== bonds_chart =================
+Highcharts.chart('bonds_chart', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: '',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Source: ' +
+            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
+            'target="_blank">YR</a>',
+        align: 'left'
+    },
+    xAxis: [{
+        categories: ['Jilin', 'Shanghai', 'Hainan', 'Beijing', 'Tianjin', 'Tibet',
+            'Guizhou', 'Guangdong', 'Liaoning', 'Qinghai', 'Chongqing', 'Heilongjiang',
+            'Jiangsu', 'Guangxi', 'Sichuan', 'Henan', 'Zhejiang', 'Xinjiang', 'Anhui', 'Hebei',
+            'Shandong', 'Ningxia', 'Inner Mongolia', 'Shaanxi', 'Yunman', 'Hubei', 'Shanxi', 'Gansu',
+            'Hunana', 'Fujian', 'Jiangxi'],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value}%',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: '',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        opposite: true
+    }, { // Secondary yAxis
+        title: {
+            text: 'RMB trillion',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: false
+    },
+    ],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 60,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || // theme
+            'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: '2022 GDP -left axis',
+        type: 'column',
+        color: '#009775',
+        yAxis: 1,
+        data: [1.5, 4, 1, 3.8, 2, .5, 2.2, 12, 3, 1, 4, 3, 11, 4, 5, 6, 7, 3, 4, 3.5, 7, 1.1, 3, 4, 3.3, 5, 3, 2, 4, 5, 4.4],
+        tooltip: {
+            valueSuffix: ''
+        }
+
+    }, {
+        name: 'Year on Year Growth (2022) -right axis',
+        type: 'spline',
+        color: '#001450',
+        data: [1.9, 2.5, 2.5, 2.5, 2.5, 2.5, 3, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 4, 4, 4, 4, 4, 4, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 2, 2],
+        tooltip: {
+            valueSuffix: ''
+        }
+    },
+    ]
+});
+
+
+
+// ======================================== fixed_assets_chart =================
+Highcharts.chart('fixed_assets_chart', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: '',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Source: ' +
+            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
+            'target="_blank">YR</a>',
+        align: 'left'
+    },
+    xAxis: [{
+        categories: ['Jilin', 'Shanghai', 'Hainan', 'Beijing', 'Tianjin', 'Tibet',
+            'Guizhou', 'Guangdong', 'Liaoning', 'Qinghai', 'Chongqing', 'Heilongjiang',
+            'Jiangsu', 'Guangxi', 'Sichuan', 'Henan', 'Zhejiang', 'Xinjiang', 'Anhui', 'Hebei',
+            'Shandong', 'Ningxia', 'Inner Mongolia', 'Shaanxi', 'Yunman', 'Hubei', 'Shanxi', 'Gansu',
+            'Hunana', 'Fujian', 'Jiangxi'],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value}%',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        title: {
+            text: '',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        },
+        opposite: true
+    }, { // Secondary yAxis
+        title: {
+            text: 'RMB trillion',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: false
+    },
+    ],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 60,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || // theme
+            'rgba(255,255,255,0.25)'
+    },
+    series: [{
+        name: '2022 GDP -left axis',
+        type: 'column',
+        color: '#009775',
+        yAxis: 1,
+        data: [1.5, 4, 1, 3.8, 2, .5, 2.2, 12, 3, 1, 4, 3, 11, 4, 5, 6, 7, 3, 4, 3.5, 7, 1.1, 3, 4, 3.3, 5, 3, 2, 4, 5, 4.4],
+        tooltip: {
+            valueSuffix: ''
+        }
+
+    }, {
+        name: 'Year on Year Growth (2022) -right axis',
+        type: 'spline',
+        color: '#001450',
+        data: [1.9, 2.5, 2.5, 2.5, 2.5, 2.5, 3, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 3.5, 4, 4, 4, 4, 4, 4, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 2, 2],
+        tooltip: {
+            valueSuffix: ''
+        }
+    },
+    ]
+});
 
 
 // ============================ screener line chart ============================
@@ -511,9 +893,9 @@ Highcharts.chart('debt_summary_bar_chart', {
 
 // ==============================mdb tab code ========================
 let ragional_tab_wrapper = document.querySelector('#ragional_tab_wrapper');
-ragional_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(value=> {
-    value.onclick = function(){
-        ragional_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(all=> {
+ragional_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(value => {
+    value.onclick = function () {
+        ragional_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(all => {
             all.classList.remove('btn-primary');
             all.classList.add('btn-outline-primary');
         })
