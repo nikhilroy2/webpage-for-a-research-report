@@ -666,61 +666,74 @@ Highcharts.chart('sector_contribe_chart', {
 
 
 
-// ========================== capital_structure_bar_chart ============================
-// Data retrieved from https://en.wikipedia.org/wiki/Winter_Olympic_Games
-Highcharts.chart('capital_structure_bar_chart', {
-
-    chart: {
-        type: 'column'
-    },
-
-    title: {
-        text: 'Olympic Games all-time medal table, grouped by continent',
-        align: 'left'
-    },
-
-    xAxis: {
-        categories: ['Gold', 'Silver', 'Bronze']
-    },
-
-    yAxis: {
-        allowDecimals: false,
-        min: 0,
-        title: {
-            text: 'Count medals'
-        }
-    },
-
-    tooltip: {
-        format: '<b>{key}</b><br/>{series.name}: {y}<br/>' +
-            'Total: {point.stackTotal}'
-    },
-
-    plotOptions: {
-        column: {
-            stacking: 'normal'
-        }
-    },
-
-    series: [{
-        name: 'Norway',
-        data: [148, 133, 124],
-        stack: 'Europe'
+// ========================== national_gdb_chart ============================
+{
+    const national_gdb_data = [{
+        name: '2018',
+        low: 55000,
+        high: 60000
     }, {
-        name: 'Germany',
-        data: [102, 98, 65],
-        stack: 'Europe'
+        name: '2019',
+        low: 60000,
+        high: 65000
     }, {
-        name: 'United States',
-        data: [113, 122, 95],
-        stack: 'North America'
+        name: '2020',
+        low: 65000,
+        high: 72000
     }, {
-        name: 'Canada',
-        data: [77, 72, 80],
-        stack: 'North America'
-    }]
-});
+        name: '2021',
+        low: 70000,
+        high: 75000
+    }, {
+        name: '2022',
+        low: 75000,
+        high: 85000
+    }];
 
+    try {
+        Highcharts.chart('national_gdb_chart', {
+
+            chart: {
+                type: 'dumbbell',
+                inverted: true
+            },
+
+            legend: {
+                enabled: false
+            },
+
+            subtitle: {
+                text: ''
+            },
+
+            title: {
+                text: 'GDP per capita and national average',
+                align: 'left'
+            },
+
+            tooltip: {
+                shared: true
+            },
+
+            xAxis: {
+                type: 'category'
+            },
+
+            yAxis: {
+                title: {
+                    text: ''
+                }
+            },
+            series: [{
+                name: 'GDP per capita and national average',
+                data: national_gdb_data,
+            }]
+
+        });
+    } catch (err) {
+        // console.log(err)
+    }
+}
 
 
 // ========================== debt_summary_bar_chart ============================
@@ -729,7 +742,7 @@ Highcharts.chart('debt_summary_bar_chart', {
         type: 'column'
     },
     title: {
-        text: 'Corn vs wheat estimated production for 2020',
+        text: 'Debt ceiling and debt outstanding, 2018-2022',
         align: 'left'
     },
     subtitle: {
@@ -739,7 +752,7 @@ Highcharts.chart('debt_summary_bar_chart', {
         align: 'left'
     },
     xAxis: {
-        categories: ['USA', 'China', 'Brazil', 'EU', 'India', 'Russia'],
+        categories: ['2018', '2019', '2020', '2021', '2022'],
         crosshair: true,
         accessibility: {
             description: 'Countries'
@@ -748,7 +761,7 @@ Highcharts.chart('debt_summary_bar_chart', {
     yAxis: {
         min: 0,
         title: {
-            text: '1000 metric tons (MT)'
+            text: 'RMB billion'
         }
     },
     tooltip: {
@@ -762,17 +775,295 @@ Highcharts.chart('debt_summary_bar_chart', {
     },
     series: [
         {
-            name: 'Corn',
-            data: [406292, 260000, 107000, 68300, 27500, 14500]
+            name: 'Debt ceiling',
+            data: [700, 880, 1050, 1300, 1450],
+            color: '#009775'
         },
         {
-            name: 'Wheat',
-            data: [51086, 136000, 5500, 141000, 107180, 77000]
+            name: 'Debt outstanding',
+            data: [650, 780, 950, 1150, 1300],
+            color: '#41B6E6'
         }
     ]
 });
 
 
+
+// ========================== bond_by_tenor_chart ============================
+Highcharts.chart('bond_by_tenor_chart', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Onshore bond issuance, by tenor (2018-22) ',
+        align: 'left'
+    },
+    xAxis: {
+        categories: ['2018', '2019', '2020', '2021', '2022']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: ''
+        },
+        stackLabels: {
+            enabled: true
+        },
+    },
+    legend: {
+        align: 'left',
+        x: 70,
+        verticalAlign: 'top',
+        y: 70,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+    },
+    tooltip: {
+        headerFormat: '<b>{point.x}</b><br/>',
+        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    series: [
+        {
+            name: '30Y',
+            data: [42, 2, 33, 4, 2],
+            color: '#E35205'
+        },
+        {
+            name: '20Y',
+            data: [2, 3.3, 3, 15, 13],
+            color: '#5C068C'
+        },
+        {
+            name: '15Y',
+            data: [1, 13, 14, 15, 13],
+            color: '#002E5D'
+        },
+        {
+            name: '10Y',
+            data: [3, 3, 4, 5, 10],
+            color: '#75787B'
+        },
+
+        {
+            name: '7Y',
+            data: [30, 20, 30, 15, 25],
+            color: '#78BE20'
+        },
+
+        {
+            name: '5Y',
+            data: [100, 10, 50, 5, 20],
+            color: '#0028A0'
+        },
+        {
+            name: '3Y',
+            data: [4, 5, 3, 2, 1],
+            color: '#41B6E6'
+        },
+        {
+            name: '1Y',
+            data: [2, 3, 4, 4, 1],
+            color: '#009775'
+        },
+    ]
+});
+
+
+// ========================== bond_by_category_chart ============================
+Highcharts.chart('bond_by_category_chart', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Onshore bond issuance, by category (2018-22)',
+        align: 'left'
+    },
+    xAxis: {
+        categories: ['2018', '2019', '2020', '2021', '2022']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: ''
+        },
+        stackLabels: {
+            enabled: true
+        },
+    },
+    legend: {
+        align: 'left',
+        x: 70,
+        verticalAlign: 'top',
+        y: 70,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+    },
+    tooltip: {
+        headerFormat: '<b>{point.x}</b><br/>',
+        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Special purpose project bond',
+            data: [70, 100, 140, 180, 150],
+            color: '#0028A0'
+        },
+        {
+            name: 'Non-project-linked special purpose bond',
+            data: [50, 10, 10, 40, 35],
+            color: '#41B6E6'
+        },
+
+        {
+            name: 'General purpose bond',
+            data: [100, 45, 53, 55, 52],
+            color: '#009775'
+        },
+
+    ]
+});
+
+
+// ======================================== bond_by_coupon_chart =================
+Highcharts.chart('bond_by_coupon_chart', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Onshore bond issuance, by coupon rate (2018-22)',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'Source: ' +
+            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
+            'target="_blank">YR</a>',
+        align: 'left'
+    },
+
+    xAxis: [{
+        categories: ['2018', '2019', '2020', '2021', '2022'],
+        crosshair: true
+    }],
+
+    yAxis: [{ // Secondary yAxis
+        title: {
+            text: '',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: false
+    },
+    ],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 60,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || // theme
+            'rgba(255,255,255,0.25)'
+    },
+    series: [
+        {
+            name: '3Y',
+            type: 'spline',
+            color: '#38AE93',
+            data: [1.9, 5, 10, 3, 7],
+            tooltip: {
+                valueSuffix: ''
+            }
+        },
+        {
+            name: '5Y',
+            type: 'spline',
+            color: '#41B6E6',
+            data: [3, 4, 3, 5, 12],
+            tooltip: {
+                valueSuffix: ''
+            }
+        },
+        {
+            name: '7Y',
+            type: 'spline',
+            color: '#0028A0',
+            data: [5, 3.4, 6, 2, 3],
+            tooltip: {
+                valueSuffix: ''
+            }
+        },
+        {
+            name: '10Y',
+            type: 'spline',
+            color: '#78BE20',
+            data: [3, 5.4, 7, 3, 11],
+            tooltip: {
+                valueSuffix: ''
+            }
+        },
+        {
+            name: '15Y',
+            type: 'spline',
+            color: '#75787B',
+            data: [13, 3.4, 5.5, 13, 1],
+            tooltip: {
+                valueSuffix: ''
+            }
+        },
+        {
+            name: '20Y',
+            type: 'spline',
+            color: '#002E5D',
+            data: [3, 7, 3.5, 9, 5],
+            tooltip: {
+                valueSuffix: ''
+            }
+        },
+        {
+            name: '30Y',
+            type: 'spline',
+            color: '#5C068C',
+            data: [13, 3, 7.5, 0, 3],
+            tooltip: {
+                valueSuffix: ''
+            }
+        },
+    ]
+});
 
 
 
@@ -783,6 +1074,18 @@ let ragional_tab_wrapper = document.querySelector('#ragional_tab_wrapper');
 ragional_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(value => {
     value.onclick = function () {
         ragional_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(all => {
+            all.classList.remove('btn-primary');
+            all.classList.add('btn-outline-primary');
+        })
+        this.classList.add('btn-primary');
+        this.classList.remove('btn-outline-primary');
+    }
+})
+
+let onshore_bond_tab_wrapper = document.querySelector('#onshore_bond_tab_wrapper');
+onshore_bond_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(value => {
+    value.onclick = function () {
+        onshore_bond_tab_wrapper.querySelectorAll('[data-mdb-tab-init]').forEach(all => {
             all.classList.remove('btn-primary');
             all.classList.add('btn-outline-primary');
         })
