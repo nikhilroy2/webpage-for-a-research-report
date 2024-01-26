@@ -107,9 +107,7 @@ Highcharts.chart('real_gdp_growth_chart', {
         align: 'left'
     },
     subtitle: {
-        text: 'Source: ' +
-            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
-            'target="_blank">YR</a>',
+        text: '',
         align: 'left'
     },
     xAxis: [{
@@ -133,6 +131,7 @@ Highcharts.chart('real_gdp_growth_chart', {
                 color: Highcharts.getOptions().colors[1]
             }
         },
+
         opposite: true
     }, { // Secondary yAxis
         title: {
@@ -186,9 +185,9 @@ Highcharts.chart('real_gdp_growth_chart', {
     },
     legend: {
         align: 'left',
-        x: 80,
-        verticalAlign: 'top',
-        y: 60,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 20,
         floating: true,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || // theme
@@ -247,9 +246,7 @@ Highcharts.chart('debt_to_gdp_chart', {
         align: 'left'
     },
     subtitle: {
-        text: 'Source: ' +
-            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
-            'target="_blank">YR</a>',
+        text: '',
         align: 'left'
     },
     xAxis: [{
@@ -295,9 +292,9 @@ Highcharts.chart('debt_to_gdp_chart', {
     },
     legend: {
         align: 'left',
-        x: 80,
-        verticalAlign: 'top',
-        y: 60,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 20,
         floating: true,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || // theme
@@ -337,9 +334,7 @@ Highcharts.chart('fixed_assets_chart', {
         align: 'left'
     },
     subtitle: {
-        text: 'Source: ' +
-            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
-            'target="_blank">YR</a>',
+        text: '',
         align: 'left'
     },
     xAxis: [{
@@ -385,9 +380,9 @@ Highcharts.chart('fixed_assets_chart', {
     },
     legend: {
         align: 'left',
-        x: 80,
-        verticalAlign: 'top',
-        y: 60,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 20,
         floating: true,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || // theme
@@ -428,9 +423,7 @@ Highcharts.chart('bonds_chart', {
         align: 'left'
     },
     subtitle: {
-        text: 'Source: ' +
-            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
-            'target="_blank">YR</a>',
+        text: '',
         align: 'left'
     },
     xAxis: [{
@@ -480,6 +473,9 @@ Highcharts.chart('bonds_chart', {
         verticalAlign: 'top',
         y: 60,
         floating: true,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 20,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || // theme
             'rgba(255,255,255,0.25)'
@@ -518,9 +514,7 @@ Highcharts.chart('fixed_assets_chart', {
         align: 'left'
     },
     subtitle: {
-        text: 'Source: ' +
-            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
-            'target="_blank">YR</a>',
+        text: '',
         align: 'left'
     },
     xAxis: [{
@@ -566,9 +560,9 @@ Highcharts.chart('fixed_assets_chart', {
     },
     legend: {
         align: 'left',
-        x: 80,
-        verticalAlign: 'top',
-        y: 60,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 20,
         floating: true,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || // theme
@@ -622,10 +616,10 @@ Highcharts.chart('sector_contribe_chart', {
     },
     legend: {
         align: 'left',
-        x: 70,
-        verticalAlign: 'top',
-        y: 70,
-        floating: true,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 10,
+        floating: false,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || 'white',
         borderColor: '#CCC',
@@ -746,9 +740,7 @@ Highcharts.chart('debt_summary_bar_chart', {
         align: 'left'
     },
     subtitle: {
-        text:
-            'Source: <a target="_blank" ' +
-            'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>',
+        text: '',
         align: 'left'
     },
     xAxis: {
@@ -777,7 +769,7 @@ Highcharts.chart('debt_summary_bar_chart', {
         {
             name: 'Debt ceiling',
             data: [700, 880, 1050, 1300, 1450],
-            color: '#009775'
+            color: '#009775',
         },
         {
             name: 'Debt outstanding',
@@ -812,10 +804,10 @@ Highcharts.chart('bond_by_tenor_chart', {
     },
     legend: {
         align: 'left',
-        x: 70,
-        verticalAlign: 'top',
-        y: 70,
-        floating: true,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 10,
+        floating: false,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || 'white',
         borderColor: '#CCC',
@@ -904,10 +896,10 @@ Highcharts.chart('bond_by_category_chart', {
     },
     legend: {
         align: 'left',
-        x: 70,
-        verticalAlign: 'top',
-        y: 70,
-        floating: true,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 10,
+        floating: false,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || 'white',
         borderColor: '#CCC',
@@ -958,9 +950,7 @@ Highcharts.chart('bond_by_coupon_chart', {
         align: 'left'
     },
     subtitle: {
-        text: 'Source: ' +
-            '<a href="https://www.yr.no/nb/historikk/graf/5-97251/Norge/Troms%20og%20Finnmark/Karasjok/Karasjok?q=2021"' +
-            'target="_blank">YR</a>',
+        text: '',
         align: 'left'
     },
 
@@ -990,10 +980,10 @@ Highcharts.chart('bond_by_coupon_chart', {
     },
     legend: {
         align: 'left',
-        x: 80,
-        verticalAlign: 'top',
-        y: 60,
-        floating: true,
+        x: 0,
+        verticalAlign: 'bottom',
+        y: 10,
+        floating: false,
         backgroundColor:
             Highcharts.defaultOptions.legend.backgroundColor || // theme
             'rgba(255,255,255,0.25)'
